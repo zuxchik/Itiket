@@ -25,20 +25,23 @@ app.get("/", (req, res) => {
   res.send("Hi NodeJs!");
 });
 
-const booking = require("./booking/bookingRoute");
+const booking = require("./booking/booking.Controller");
 app.use("/booking", booking);
 
-const cart = require("./cart/cartRoute");
+const customer = require("./customer/customer.Route");
+app.use("/customer", customer);
+
+const cart = require("./cart/cart.Route");
 app.use("/cart", cart);
 
-const customerCard = require("./customerCard/customerRoute");
-app.use("/customerCard", customerCard);
+// const customerCard = require("./event");
+// app.use("/customerCard", customerCard);
 
-const admin = require("./admin/adminRoute");
+const admin = require("./Admin/Admin.Route");
 app.use("/admin", admin);
 
-// const customerAddress = require("./customerAddress/customerAddressRoute")
-// app.use("/customerAddress", customerAddress)
+const customerAddress = require("./customer_address/customer_address.Route")
+app.use("/customerAddress", customerAddress)
 
 
 

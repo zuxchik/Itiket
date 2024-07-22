@@ -79,26 +79,6 @@ const updateAdmin = async (req, res) => {
   }
 };
 
-// const searchUser = async (req, res) => {
-//   try {
-//     const { query } = req.query;
-//     const result = await User.find({
-//       $or: [
-//         { firstname: { $regex: query, $options: "i" } },
-//         { lastname: { $regex: query, $options: "i" } },
-//         { username: { $regex: query, $options: "i" } },
-//       ],
-//     });
-//     if (result.length === 0) {
-//       return res.json({ message: "Bunday foydalanuvchi topilmadi" });
-//     }
-//     res.json(result);
-//   } catch (error) {
-//     console.error("Error fetching users:", error);
-//     res.status(500).json({ message: "Server error: Failed to fetch users." });
-//   }
-// };
-
 module.exports = {
   createAdmin,
   getAdmin,

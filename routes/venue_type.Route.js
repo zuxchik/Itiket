@@ -5,7 +5,7 @@ const {
     getvenueType,
     getvenueTypeById,
     updatevenueType,
-} = require("./venue_type.Controller");
+} = require("../venue_type/venue_type.Controller");
 
 /**
  * @swagger

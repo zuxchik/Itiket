@@ -48,14 +48,14 @@ app.get("/", (req, res) => {
   res.send("Hi NodeJs!");
 });
 
-const { booking } = require("./booking/booking.Route.js");
+const { booking } = require("./routes/booking.Route.js");
 app.use("/booking", booking);
 
 const { venue_type } = require("./routes/venue_type.Route.js");
 app.use("/venue_type", venue_type);
 
 
-const { admin } = require("./Admin/Admin.Route.js");
+const { admin } = require("./routes/Admin.Route.js");
 app.use("/AdminChik", admin);
 
 

@@ -5,7 +5,7 @@ const {
   getAdmin,
   getAdminById,
   updateAdmin,
-} = require("./Admin.controller");
+} = require("./Admin.cintroller");
 
 
 admin.post("/create", createAdmin);
@@ -13,4 +13,4 @@ admin.get("/getAdmin", getAdmin);
 admin.get("/getAdmin/:id", getAdminById);
 admin.put("/updateAdmin/:id", updateAdmin);
 
-module.exports = admin;
+module.exports = { admin };

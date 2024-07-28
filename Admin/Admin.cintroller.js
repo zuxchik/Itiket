@@ -1,5 +1,4 @@
-const admin = require("./adminRoute");
-const { Admin } = require("./adminSchema");
+const { AdminChik } = require("./Admin.Schema");
 
 const createAdmin = async (req, res) => {
   try {
@@ -7,17 +6,16 @@ const createAdmin = async (req, res) => {
       name,
       login,
       hashed_password,
-      is_active,
-      is_creator,
-      hashed_refresh_token,
+      // is_active,
+      // is_creator,
     } = req.body;
 
-    const newAdmin = new Admin({
+    const newAdmin = new AdminChik({
       name,
       login,
       hashed_password,
-      is_active,
-      is_creator,
+      // is_active,
+      // is_creator,
     });
 
     await newAdmin.save();
@@ -29,7 +27,7 @@ const createAdmin = async (req, res) => {
 
 const getAdmin = async (req, res) => {
   try {
-    const admins = await Admin.find();
+    const admins = await AdminChik.find();
     res.send(admins);
   } catch (error) {
     res.status(500).send(error.message);
@@ -39,7 +37,7 @@ const getAdmin = async (req, res) => {
 const getAdminById = async (req, res) => {
   try {
     const { id } = req.params;
-    const admin = await Admin.findById(id);
+    const admin = await AdminChik.findById(id);
     if (!admin) {
       return res.status(404).send("Admin not found");
     }
@@ -54,7 +52,7 @@ const updateAdmin = async (req, res) => {
     const AdminId = req.params.id;
     const updatedData = req.body;
 
-    const updatedAdmin = await Admin.findByIdAndUpdate(AdminId, updatedData, {
+    const updatedAdmin = await AdminChik.findByIdAndUpdate(AdminId, updatedData, {
       new: true,
     });
 
@@ -68,7 +66,7 @@ const updateAdmin = async (req, res) => {
     res.json({
       success: true,
       message: "Admin ma'lumotlari yangilandi.",
-      admin: updatedAdmin,
+      AdminChik: updatedAdmin,
     });
   } catch (error) {
     console.error("Xato:", error);

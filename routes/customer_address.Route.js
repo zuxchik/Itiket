@@ -5,7 +5,7 @@ const {
   getCustomerAddresses,
   getCustomerAddressById,
   updateCustomerAddress,
-} = require("./customer_address.Controller");
+} = require("../customer_address/customer_address.Controller");
 
 customerAddress.post("/create", createCustomerAddress);
 customerAddress.get("/getCustomerAddresses", getCustomerAddresses);

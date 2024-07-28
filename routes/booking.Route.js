@@ -12,4 +12,4 @@ booking.get("/getBookings", getBookings);
 booking.get("/getBooking/:id", getBookingById);
 booking.put("/updateBooking/:id", updateBooking);
 
-module.exports = booking;
+module.exports = { booking };

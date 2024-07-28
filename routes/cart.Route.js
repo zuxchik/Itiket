@@ -5,7 +5,7 @@ const {
   getCarts,
   getCartById,
   updateCart,
-} = require("./cart.controller");
+} = require("../cart/cart.controller");
 
 cart.post("/create", createCart);
 cart.get("/getCarts", getCarts);

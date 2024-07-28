@@ -5,7 +5,7 @@ const {
   getCustomers,
   getCustomerById,
   updateCustomer,
-} = require("./customer.Controller");
+} = require("../customer/customer.Controller");
 
 customer.post("/create", createCustomer);
 customer.get("/getCustomers", getCustomers);

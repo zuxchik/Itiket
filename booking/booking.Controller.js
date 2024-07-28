@@ -7,10 +7,6 @@ const createBooking = async (req, res) => {
       cart_id,
       createdAt,
       finished,
-      payment_method_id,
-      delivery_method_id,
-      discount_coupon_id,
-      status_id
     } = req.body;
 
     const newBooking = new Booking({
@@ -18,10 +14,6 @@ const createBooking = async (req, res) => {
       cart_id,
       createdAt,
       finished,
-      payment_method_id,
-      delivery_method_id,
-      discount_coupon_id,
-      status_id
     });
 
     await newBooking.save();

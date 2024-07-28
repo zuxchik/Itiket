@@ -1,10 +1,13 @@
 const express = require("express");
-const { connect } = require("mongoose");
+const { connect, version } = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
 
+
+const swaggerJsdoc = require("swagger-jsdoc")
+const swaggerUi = require("swagger-ui-express")
 
 app.use(express.json());
 app.use(cors());
@@ -21,27 +24,40 @@ async function connectToDB() {
 connectToDB();
 
 
+const swaggerOptions = {
+  swiggerDefintion: {
+    openapi: "3.0.0",
+    info: {
+      title: "Express API with Swigger",
+      version: "1.0.0",
+      description: "API documentation using Swigger"
+    },
+    servers: [
+      {
+        url: "http://localhost:5000",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"] 
+}
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions)
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
 app.get("/", (req, res) => {
   res.send("Hi NodeJs!");
 });
 
-const booking = require("./booking/booking.Controller");
+const { booking } = require("./booking/booking.Route.js");
 app.use("/booking", booking);
 
-const customer = require("./customer/customer.Route");
-app.use("/customer", customer);
+const { venue_type } = require("./routes/venue_type.Route.js");
+app.use("/venue_type", venue_type);
 
-const cart = require("./cart/cart.Route");
-app.use("/cart", cart);
 
-// const customerCard = require("./event");
-// app.use("/customerCard", customerCard);
+const { admin } = require("./Admin/Admin.Route.js");
+app.use("/AdminChik", admin);
 
-const admin = require("./Admin/Admin.Route");
-app.use("/admin", admin);
-
-const customerAddress = require("./customer_address/customer_address.Route")
-app.use("/customerAddress", customerAddress)
 
 
 

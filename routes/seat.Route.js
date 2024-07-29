@@ -1,11 +1,7 @@
 const { Router } = require("express");
 const seatRouter = Router();
-const {
-  createSeat,
-  getSeats,
-  getSeatById,
-  updateSeat,
-} = require("../seat");
+
+const { getSeat, create_Seat, getSeatById, updateSeat } = require("../seat/seat.Controller");
 
 /**
  * @swagger
@@ -39,7 +35,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-seatRouter.post("/create", createSeat);
+seatRouter.post("/create", create_Seat);
 
 /**
  * @swagger
@@ -54,7 +50,7 @@ seatRouter.post("/create", createSeat);
  *       "500":
  *         description: Internal server error
  */
-seatRouter.get("/getSeats", getSeats);
+seatRouter.get("/getSeats", getSeat);
 
 /**
  * @swagger

@@ -66,7 +66,7 @@ const updateAdmin = async (req, res) => {
     res.json({
       success: true,
       message: "Admin ma'lumotlari yangilandi.",
-      AdminChik: updatedAdmin,
+      AdminsChik: updatedAdmin,
     });
   } catch (error) {
     console.error("Xato:", error);

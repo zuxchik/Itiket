@@ -1,10 +1,10 @@
 const { Router } = require("express");
 const humanCategoryRouter = Router();
 const {
-  createHumanCategory,
-  getHumanCategories,
   getHumanCategoryById,
   updateHumanCategory,
+  create_HumanCategory,
+  getHumanCategory,
 } = require("../human_category/human_category.Cotroller");
 
 /**
@@ -35,7 +35,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-humanCategoryRouter.post("/create", createHumanCategory);
+humanCategoryRouter.post("/create", create_HumanCategory);
 
 /**
  * @swagger
@@ -50,7 +50,7 @@ humanCategoryRouter.post("/create", createHumanCategory);
  *       "500":
  *         description: Internal server error
  */
-humanCategoryRouter.get("/getHumanCategories", getHumanCategories);
+humanCategoryRouter.get("/getHumanCategories", getHumanCategory);
 
 /**
  * @swagger

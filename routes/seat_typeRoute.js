@@ -1,10 +1,10 @@
 const { Router } = require("express");
 const seatTypeRouter = Router();
 const {
-  createSeatType,
-  getSeatTypes,
-  getSeatTypeById,
-  updateSeatType,
+  create_SeatTypof,
+  getSeatTypof,
+  getSeatTypofById,
+  updateSeatTypof,
 } = require("../seat_type/seat_type.controller");
 
 /**
@@ -35,7 +35,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-seatTypeRouter.post("/create", createSeatType);
+seatTypeRouter.post("/create", create_SeatTypof);
 
 /**
  * @swagger
@@ -50,7 +50,7 @@ seatTypeRouter.post("/create", createSeatType);
  *       "500":
  *         description: Internal server error
  */
-seatTypeRouter.get("/getSeatTypes", getSeatTypes);
+seatTypeRouter.get("/getSeatTypes", getSeatTypof);
 
 /**
  * @swagger
@@ -74,7 +74,7 @@ seatTypeRouter.get("/getSeatTypes", getSeatTypes);
  *       "500":
  *         description: Internal server error
  */
-seatTypeRouter.get("/getSeatType/:id", getSeatTypeById);
+seatTypeRouter.get("/getSeatType/:id", getSeatTypofById);
 
 /**
  * @swagger
@@ -107,6 +107,6 @@ seatTypeRouter.get("/getSeatType/:id", getSeatTypeById);
  *       "500":
  *         description: Internal server error
  */
-seatTypeRouter.put("/updateSeatType/:id", updateSeatType);
+seatTypeRouter.put("/updateSeatType/:id", updateSeatTypof);
 
 module.exports = { seatTypeRouter };

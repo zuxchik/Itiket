@@ -1,11 +1,6 @@
 const { Router } = require("express");
 const eventTypeRouter = Router();
-const {
-  createEventType,
-  getEventTypes,
-  getEventTypeById,
-  updateEventType,
-} = require("../event_type/event_type.Schema");
+const { getEventType, create_EvenType, getEventTypeById, updateEventType } = require("../event_type/event_type.Controller");
 
 /**
  * @swagger
@@ -35,7 +30,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-eventTypeRouter.post("/create", createEventType);
+eventTypeRouter.post("/create", create_EvenType);
 
 /**
  * @swagger
@@ -50,7 +45,7 @@ eventTypeRouter.post("/create", createEventType);
  *       "500":
  *         description: Internal server error
  */
-eventTypeRouter.get("/getEventTypes", getEventTypes);
+eventTypeRouter.get("/getEventTypes", getEventType);
 
 /**
  * @swagger

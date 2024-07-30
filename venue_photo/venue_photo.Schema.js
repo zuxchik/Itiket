@@ -5,6 +5,6 @@ const venuePhotoSchema = new Schema({
   url: { type: String, required: true }
 });
 
-const VenuePhoto = model("VenuePhoto", venuePhotoSchema);
+const VenuePhotos = model("VenuePhoto", venuePhotoSchema);
 
-module.exports = { VenuePhoto };
+module.exports = { VenuePhotos };

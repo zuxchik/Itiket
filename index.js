@@ -38,7 +38,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ["./routes/*.js"] 
+  apis: ["./routes/*.js"]
 }
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions)
@@ -48,15 +48,50 @@ app.get("/", (req, res) => {
   res.send("Hi NodeJs!");
 });
 
-const { booking } = require("./routes/booking.Route.js");
-app.use("/booking", booking);
+const { bookingRouter } = require("./routes/booking.Route.js");
+app.use("/booking", bookingRouter);
 
 const { venue_type } = require("./routes/venue_type.Route.js");
 app.use("/venue_type", venue_type);
 
+const { adminRouter } = require("./routes/Admin.Route.js");
+app.use("/adminRouter", adminRouter);
 
-const { admin } = require("./routes/Admin.Route.js");
-app.use("/AdminChik", admin);
+const { cartRouter } = require("./routes/cart.Route.js");
+app.use("/cartRouter", cartRouter);
+
+const { customerAddressRouter } = require("./routes/customer_address.Route.js");
+app.use("/customerAddressRouter", customerAddressRouter);
+
+const { customerCardRouter } = require("./routes/customer_card.Route.js");
+app.use("/customerCardRouter", customerCardRouter);
+
+const { customerRouter } = require("./routes/customer.Route.js");
+app.use("/customerRouter", customerRouter);
+
+const { eventTypeRouter } = require("./routes/event_type.Route.js");
+app.use("/eventTypeRouter", eventTypeRouter);
+
+const { eventRouter } = require("./routes/event.Route.js");
+app.use("/eventRouter", eventRouter);
+
+const { humanCategoryRouter } = require("./routes/human_category.Route.js");
+app.use("/humanCategoryRouter", humanCategoryRouter);
+
+const { seatTypeRouter } = require("./routes/seat_typeRoute.js");
+app.use("/seatTypeRouter", seatTypeRouter);
+
+const { seatRouter } = require("./routes/seat.Route.js");
+app.use("/seatRouter", seatRouter);
+
+const { ticketRouter } = require("./routes/ticket.route.js");
+app.use("/ticketRouter", ticketRouter);
+
+const { venuePhotoRouter } = require("./routes/venua_photo.route.js");
+app.use("/venuePhotoRouter", venuePhotoRouter);
+
+const { venueRouter } = require("./routes/venue.route.js");
+app.use("/venueRouter", venueRouter);
 
 
 

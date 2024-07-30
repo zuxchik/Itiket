@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const venueSchema = new Schema({
-  id: { type: Number, required: true },
   name: { type: String, required: true },
   address: { type: String, required: true },
   location: { type: String, required: true },
@@ -11,6 +10,6 @@ const venueSchema = new Schema({
   schema: { type: String, required: false }
 });
 
-const Venue = model("Venue", venueSchema);
+const VenueBek = model("Venue", venueSchema);
 
-module.exports = { Venue };
+module.exports = { VenueBek };

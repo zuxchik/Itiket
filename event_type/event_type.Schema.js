@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+  const { Schema, model } = require("mongoose");
 
 const event_typeSchema = new Schema({
   name: { type: String, required: true },

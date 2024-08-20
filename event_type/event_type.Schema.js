@@ -7,6 +7,6 @@ const event_typeSchema = new Schema({
   gender: { type: Number, required: true }
 });
 
-const event_typeChik = model("HumanCategory", event_typeSchema);
+const event_typeChik = model("event_typeChik", event_typeSchema);
 
 module.exports = { event_typeChik };

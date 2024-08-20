@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+const { Customer } = require("../customer/customer.Schema")
+
 
 const customerCardSchema = new Schema({
   id: { type: Number, required: true },

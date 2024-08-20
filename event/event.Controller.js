@@ -1,4 +1,4 @@
-const { Event } = require("./eventSchema");
+const { Event } = require("./event.Schema");
 
 const createEvent = async (req, res) => {
   try {

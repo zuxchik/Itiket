@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const humanCategorySchema = new Schema({
   name: { type: String, required: true },
@@ -7,6 +8,13 @@ const humanCategorySchema = new Schema({
   gender: { type: Number, required: true }
 });
 
-const HumanChik = model("HumanCategory", humanCategorySchema);
+const HumanCategory = mongoose.model('HumanCategory', humanCategorySchema);
+module.exports = { HumanCategory };
 
-module.exports = { HumanChik };
+
+
+
+// Define your schema here
+// Your schema fields
+
+// Create and export your model

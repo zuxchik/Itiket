@@ -25,12 +25,12 @@ connectToDB();
 
 
 const swaggerOptions = {
-  swiggerDefintion: {
+  swaggerDefinition: { 
     openapi: "3.0.0",
     info: {
-      title: "Express API with Swigger",
+      title: "Express API with Swagger",
       version: "1.0.0",
-      description: "API documentation using Swigger"
+      description: "API documentation using Swagger"
     },
     servers: [
       {
@@ -39,7 +39,8 @@ const swaggerOptions = {
     ],
   },
   apis: ["./routes/*.js"]
-}
+};
+
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))

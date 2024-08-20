@@ -1,4 +1,4 @@
-const { CustomerCard } = require("./customerCardSchema");
+const { CustomerCard } = require("./customer_card.Schema");
 
 const createCustomerCard = async (req, res) => {
   try {

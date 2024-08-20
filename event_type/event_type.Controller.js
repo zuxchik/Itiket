@@ -1,83 +1,88 @@
 const { event_typeChik } = require("./event_type.Schema");
 
-const create_EvenType = async (req, res) => {
+const createEventType = async (req, res) => {
     try {
-        const {
-            name,
-            start_age,
-            finish_age,
-            gender
-        } = req.body;
+        const { name } = req.body;
 
-        const new_EvenType = new event_typeChik({
-            name,
-            start_age,
-            finish_age,
-            gender
+        const newEventType = new event_typeChik({ name });
+
+        await newEventType.save();
+        res.status(201).json({
+            success: true,
+            message: "Event type created successfully",
+            data: newEventType
         });
-
-        await new_EvenType.save();
-        res.status(201).send(new_EvenType);
     } catch (error) {
-        res.status(400).send(error.message);
+        console.error("Error:", error);
+        res.status(400).json({ success: false, message: error.message });
     }
 };
 
-const getEventType = async (req, res) => {
+const getEventTypes = async (req, res) => {
     try {
-        const EventTypes = await event_typeChik.find();
-        res.send(EventTypes);
+        const eventTypes = await event_typeChik.find({});
+        res.status(200).json({
+            success: true,
+            message: "Event types retrieved successfully",
+            data: eventTypes
+        });
     } catch (error) {
-        res.status(500).send(error.message);
+        console.error("Error:", error);
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 
 const getEventTypeById = async (req, res) => {
     try {
         const { id } = req.params;
-        const EventType = await event_typeChik.findById(id);
-        if (!EventType) {
-            return res.status(404).send("EventType not found");
+        const eventType = await event_typeChik.findById(id);
+        if (!eventType) {
+            return res.status(404).json({
+                success: false,
+                message: "Event type not found",
+            });
         }
-        res.send(EventType);
+        res.status(200).json({
+            success: true,
+            message: "Event type retrieved successfully",
+            data: eventType
+        });
     } catch (error) {
-        res.status(500).send(error.message);
+        console.error("Error:", error);
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 
 const updateEventType = async (req, res) => {
     try {
-        const EventTypeId = req.params.id;
+        const { id } = req.params;
         const updatedData = req.body;
-
-        const updatedEventType = await event_typeChik.findByIdAndUpdate(EventTypeId, updatedData, {
-            new: true,
-        });
+        const updatedEventType = await event_typeChik.findByIdAndUpdate(id, updatedData, { new: true });
 
         if (!updatedEventType) {
             return res.status(404).json({
                 success: false,
-                message: "EventType topilmadi.",
+                message: "Event type not found",
             });
         }
 
-        res.json({
+        res.status(200).json({
             success: true,
-            message: "EventType ma'lumotlari yangilandi.",
-            EventTypeChik: updatedEventType,
+            message: "Event type updated successfully",
+            data: updatedEventType
         });
     } catch (error) {
-        console.error("Xato:", error);
+        console.error("Error:", error);
         res.status(500).json({
             success: false,
-            message: "Server xatosi: EventTypei yangilashda xato yuz berdi.",
+            message: "Server error: Could not update event type",
         });
     }
 };
 
 module.exports = {
-    create_EvenType,
-    getEventType,
+    createEventType,
+    getEventTypes,
     getEventTypeById,
     updateEventType,
 };

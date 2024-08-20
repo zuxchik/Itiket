@@ -6,16 +6,16 @@ const createAdmin = async (req, res) => {
       name,
       login,
       hashed_password,
-      // is_active,
-      // is_creator,
+      is_active,
+      is_creator
     } = req.body;
 
     const newAdmin = new AdminChik({
       name,
       login,
       hashed_password,
-      // is_active,
-      // is_creator,
+      is_active,
+      is_creator
     });
 
     await newAdmin.save();
@@ -36,14 +36,14 @@ const getAdmin = async (req, res) => {
 
 const getAdminById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const admin = await AdminChik.findById(id);
-    if (!admin) {
-      return res.status(404).send("Admin not found");
+    const  adminId  = req.params.id;
+    const admin = await AdminChik.findById(adminId);
+    if (admin) {
+       res.json({message: "Admin topildi", admin})
     }
-    res.send(admin);
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error("Xato", error)
+    res.json({message: "Xatolik yuz berdi"})
   }
 };
 

@@ -3,21 +3,19 @@ const { Cart } = require("./cart.Schema");
 const createCart = async (req, res) => {
   try {
     const {
-      id,
       ticket_id,
       customer_id,
+      status_id,
       createdAt,
       finishedAt,
-      status_id
     } = req.body;
 
     const newCart = new Cart({
-      id,
       ticket_id,
       customer_id,
+      status_id,
       createdAt,
-      finishedAt,
-      status_id
+      finishedAt
     });
 
     await newCart.save();
@@ -39,7 +37,7 @@ const getCarts = async (req, res) => {
 const getCartById = async (req, res) => {
   try {
     const { id } = req.params;
-    const cart = await Cart.findById(id);
+    const cart = await Cart.findById(id).populate("ticket_id customer_id status_id");
     if (!cart) {
       return res.status(404).send("Cart not found");
     }

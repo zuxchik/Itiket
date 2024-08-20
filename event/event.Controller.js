@@ -53,7 +53,7 @@ const getEvents = async (req, res) => {
 const getEventById = async (req, res) => {
   try {
     const { id } = req.params;
-    const event = await Event.findById(id);
+    const event = await Event.findById(id).populate("event_type_id human_category_id venue_id lang_id");
     if (!event) {
       return res.status(404).send("Event not found");
     }

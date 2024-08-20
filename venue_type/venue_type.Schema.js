@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const venueTypeSchema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String, require: true },
 });
 
-const VenueType = model("VenueType", venueTypeSchema);
+const VenueType = model("venueType", venueTypeSchema);
 
 module.exports = { VenueType };

@@ -45,7 +45,7 @@ const getCustomerCards = async (req, res) => {
 const getCustomerCardById = async (req, res) => {
   try {
     const { id } = req.params;
-    const customerCard = await CustomerCard.findById(id);
+    const customerCard = await CustomerCard.findById(id).populate("customer_id");
     if (!customerCard) {
       return res.status(404).send("Customer card not found");
     }

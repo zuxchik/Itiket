@@ -1,19 +1,23 @@
 const { Schema, model } = require("mongoose");
 const { Customer } = require("../customer/customer.Schema")
+const { Region } = require("../Region/region.Schema");
+const { District } = require("../discrict/discrict.Schema");
+const { countrychik } = require("../Country/Country.schema");
+const { Flat } = require("../flat/flat.Schema");
 
 const customerAddressSchema = new Schema({
   customer_id: { type: Schema.Types.ObjectId, ref: Customer },
-  name: { type: String, required: true },
-  country_id: { type: Number, required: true },
-  region_id: { type: Number, required: true },
-  district_id: { type: Number, required: true },
-  street: { type: String, required: true },
-  house: { type: String, required: true },
-  flat: { type: String, required: true },
-  location: { type: String, required: true },
-  post_index: { type: String, required: true },
-  info: { type: String, required: false }
+  name: { type: String, require: true },
+  country_id: { type: Schema.Types.ObjectId, ref: countrychik },
+  region_id: { type: Schema.Types.ObjectId, ref: Region },
+  district_id: { type: Schema.Types.ObjectId, ref: District },
+  street: { type: String, require: true },
+  house: { type: String, require: true },
+  flat: { type: Schema.Types.ObjectId, ref: Flat },
+  location: { type: String, require: true },
+  post_index: { type: String, require: true },
+  info: { type: String, require: true }
 });
 
-const CustomerAddress = model("CustomerAddress", customerAddressSchema);
+const CustomerAddress = model("customerAddress", customerAddressSchema);
 module.exports = { CustomerAddress };

@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const seatTypeSchema = new Schema({
-  name: { type: String, required: true }
+  name: { type: String, require: true }
 });
 
-const ZeatTypoF = model("SeatType", seatTypeSchema);
+const SeatType = model("seatType", seatTypeSchema);
 
-module.exports = { ZeatTypoF };
+module.exports = { SeatType };

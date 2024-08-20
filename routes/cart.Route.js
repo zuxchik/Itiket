@@ -7,6 +7,16 @@ const {
   updateCart,
 } = require("../cart/cart.controller");
 
+const {cartValidation} = require("../cart/cart.validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const { error } = schema.validate(req.body);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+  }
+  next();
+};
+
 /**
  * @swagger
  * tags:
@@ -16,7 +26,7 @@ const {
 
 /**
  * @swagger
- * /cart/create:
+ * /cartRouter/createCart:
  *   post:
  *     summary: Create a new cart
  *     tags: [Cart]
@@ -44,11 +54,11 @@ const {
  *       "500":
  *         description: Internal server error
  */
-cartRouter.post("/create", createCart);
+cartRouter.post("/createCart", ValidateSchema(cartValidation), createCart);
 
 /**
  * @swagger
- * /cart/getCarts:
+ * /cartRouter/getCarts:
  *   get:
  *     summary: Get all carts
  *     tags: [Cart]
@@ -63,7 +73,7 @@ cartRouter.get("/getCarts", getCarts);
 
 /**
  * @swagger
- * /cart/getCart/{id}:
+ * /cartRouter/getCartById/{id}:
  *   get:
  *     summary: Get a cart by ID
  *     tags: [Cart]
@@ -83,11 +93,11 @@ cartRouter.get("/getCarts", getCarts);
  *       "500":
  *         description: Internal server error
  */
-cartRouter.get("/getCart/:id", getCartById);
+cartRouter.get("/getCartById/:id", getCartById);
 
 /**
  * @swagger
- * /cart/updateCart/{id}:
+ * /cartRouter/updateCart/{id}:
  *   put:
  *     summary: Update a cart by ID
  *     tags: [Cart]

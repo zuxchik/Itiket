@@ -3,7 +3,6 @@ const { Customer } = require("./customer.Schema");
 const createCustomer = async (req, res) => {
   try {
     const {
-      id,
       first_name,
       last_name,
       phone,
@@ -12,11 +11,9 @@ const createCustomer = async (req, res) => {
       birth_date,
       gender,
       lang_id,
-      hashed_refresh_token
     } = req.body;
 
     const newCustomer = new Customer({
-      id,
       first_name,
       last_name,
       phone,
@@ -25,7 +22,6 @@ const createCustomer = async (req, res) => {
       birth_date,
       gender,
       lang_id,
-      hashed_refresh_token
     });
 
     await newCustomer.save();
@@ -47,7 +43,7 @@ const getCustomers = async (req, res) => {
 const getCustomerById = async (req, res) => {
   try {
     const { id } = req.params;
-    const customer = await Customer.findById(id);
+    const customer = await Customer.findById(id).populate("gender lang_id");
     if (!customer) {
       return res.status(404).send("Customer not found");
     }

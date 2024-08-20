@@ -1,10 +1,11 @@
 const { Schema, model } = require("mongoose");
+const { VenueBek } = require("../venue/venue.Schema");
 
 const venuePhotoSchema = new Schema({
-  venue_id: { type: Number, required: true },
-  url: { type: String, required: true }
+  venue_id: { type: Schema.Types.ObjectId, ref: VenueBek },
+  url: { type: String, require: true }
 });
 
-const VenuePhotos = model("VenuePhoto", venuePhotoSchema);
+const VenuePhotos = model("venuePhoto", venuePhotoSchema);
 
 module.exports = { VenuePhotos };

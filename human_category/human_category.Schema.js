@@ -1,20 +1,13 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, model } = require("mongoose");
+const { Gender } = require("../gender/gender.Schema");
+
 
 const humanCategorySchema = new Schema({
-  name: { type: String, required: true },
-  start_age: { type: Number, required: true },
-  finish_age: { type: Number, required: true },
-  gender: { type: Number, required: true }
+  name: { type: String, require: true },
+  start_age: { type: Number, require: true },
+  finish_age: { type: Number, require: true },
+  gender_id: { type: Schema.Types.ObjectId, ref: Gender }
 });
 
-const HumanCategory = mongoose.model('HumanCategory', humanCategorySchema);
+const HumanCategory = model('humanCategory', humanCategorySchema);
 module.exports = { HumanCategory };
-
-
-
-
-// Define your schema here
-// Your schema fields
-
-// Create and export your model

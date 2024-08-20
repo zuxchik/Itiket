@@ -7,6 +7,17 @@ const {
   updateBooking,
 } = require("../booking/booking.Controller");
 
+const { BookingValidation } = require("../booking/booking.validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -16,7 +27,7 @@ const {
 
 /**
  * @swagger
- * /booking/create:
+ * /bookingRouter/create:
  *   post:
  *     summary: Create a new booking
  *     tags: [Booking]
@@ -27,16 +38,21 @@ const {
  *         application/json:
  *           schema:
  *             properties:
- *               userId:
+ *               cart_id:
  *                 type: string
- *               venueId:
+ *               status_id:
  *                 type: string
- *               date:
+ *               createdAt:
  *                 type: string
  *                 format: date
- *               time:
+ *               fineshed:
  *                 type: string
- *               details:
+ *                 format: date
+ *               payment_method_id:
+ *                 type: string
+ *               delivery_method_id:
+ *                 type: string
+ *               discount_coupon_id:
  *                 type: string
  *     responses:
  *       "201":
@@ -44,11 +60,11 @@ const {
  *       "500":
  *         description: Internal server error
  */
-bookingRouter.post("/create", createBooking);
+bookingRouter.post("/createBooking", ValidateSchema(BookingValidation), createBooking);
 
 /**
  * @swagger
- * /booking/getBookings:
+ * /bookingRouter/getBookings:
  *   get:
  *     summary: Get all bookings
  *     tags: [Booking]
@@ -63,7 +79,7 @@ bookingRouter.get("/getBookings", getBookings);
 
 /**
  * @swagger
- * /booking/getBooking/{id}:
+ * /bookingRouter/getBooking/{id}:
  *   get:
  *     summary: Get a booking by ID
  *     tags: [Booking]
@@ -87,7 +103,7 @@ bookingRouter.get("/getBooking/:id", getBookingById);
 
 /**
  * @swagger
- * /booking/updateBooking/{id}:
+ * /bookingRouter/updateBooking/{id}:
  *   put:
  *     summary: Update a booking by ID
  *     tags: [Booking]
@@ -106,16 +122,21 @@ bookingRouter.get("/getBooking/:id", getBookingById);
  *           schema:
  *             type: object
  *             properties:
- *               userId:
+ *               cart_id:
  *                 type: string
- *               venueId:
+ *               status_id:
  *                 type: string
- *               date:
+ *               createdAt:
  *                 type: string
  *                 format: date
- *               time:
+ *               fineshed:
  *                 type: string
- *               details:
+ *                 format: date
+ *               payment_method_id:
+ *                 type: string
+ *               delivery_method_id:
+ *                 type: string
+ *               discount_coupon_id:
  *                 type: string
  *     responses:
  *       "200":

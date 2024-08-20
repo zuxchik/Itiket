@@ -28,7 +28,13 @@ const {
  *           schema:
  *             properties:
  *               name:
- *                 type: string
+ *                type: string
+ *               start_age:
+ *                type: number
+ *               finish_age:
+ *                type: number
+ *               gender_id:
+ *                type: string
  *     responses:
  *       "201":
  *         description: Human category created successfully
@@ -36,7 +42,6 @@ const {
  *         description: Internal server error
  */
 humanCategoryRouter.post("/create", create_HumanCategory);
-
 /**
  * @swagger
  * /human_category/getHumanCategories:
@@ -74,7 +79,7 @@ humanCategoryRouter.get("/getHumanCategories", getHumanCategory);
  *       "500":
  *         description: Internal server error
  */
-humanCategoryRouter.get("/getHumanCategory/:id", getHumanCategoryById);
+humanCategoryRouter.get("/getHumanCategoryById/:id", getHumanCategoryById);
 
 /**
  * @swagger
@@ -98,7 +103,13 @@ humanCategoryRouter.get("/getHumanCategory/:id", getHumanCategoryById);
  *             type: object
  *             properties:
  *               name:
- *                 type: string
+ *                type: string
+ *               start_age:
+ *                type: number
+ *               finish_age:
+ *                type: number
+ *               gender_id:
+ *                type: string
  *     responses:
  *       "200":
  *         description: Human category updated successfully

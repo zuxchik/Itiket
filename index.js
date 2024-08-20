@@ -1,5 +1,5 @@
 const express = require("express");
-const { connect, version } = require("mongoose");
+const { connect } = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -25,7 +25,7 @@ connectToDB();
 
 
 const swaggerOptions = {
-  swaggerDefinition: { 
+  swaggerDefinition: {
     openapi: "3.0.0",
     info: {
       title: "Express API with Swagger",
@@ -93,6 +93,27 @@ app.use("/venuePhotoRouter", venuePhotoRouter);
 
 const { venueRouter } = require("./routes/venue.route.js");
 app.use("/venueRouter", venueRouter);
+
+const { paymentRouter } = require("./routes/payment.Route.js");
+app.use("/paymentRouter", paymentRouter);
+
+const { genderRouter } = require("./routes/Gender.Route.js");
+app.use("/genderRouter", genderRouter);
+
+const { languageRouter } = require("./routes/language.Route.js");
+app.use("/languageRouter", languageRouter)
+
+const { flatRoute } = require("./routes/flat.Route.js");
+app.use("/flatRoute", flatRoute)
+
+const { SectorRoute } = require("./routes/Sector.Route.js");
+app.use("/SectorRoute", SectorRoute)
+
+const { TicketTypeChikRoute } = require("./routes/TicketType.Route.js");
+app.use("/TicketTypeChikRoute", TicketTypeChikRoute)
+
+const { CountryChikRoute } = require("./routes/Country.Route.js");
+app.use("/CountryChikRoute", CountryChikRoute)
 
 
 

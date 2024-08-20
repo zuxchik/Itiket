@@ -5,10 +5,10 @@ const createCustomerAddress = async (req, res) => {
     const {
       id,
       customer_id,
-      name,
       country_id,
       region_id,
       district_id,
+      name,
       street,
       house,
       flat,
@@ -51,7 +51,7 @@ const getCustomerAddresses = async (req, res) => {
 const getCustomerAddressById = async (req, res) => {
   try {
     const { id } = req.params;
-    const customerAddress = await CustomerAddress.findById(id);
+    const customerAddress = await CustomerAddress.findById(id).populate("customer_id country_id region_id district_id");
     if (!customerAddress) {
       return res.status(404).send("Customer address not found");
     }

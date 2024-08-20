@@ -1,6 +1,9 @@
 const { Router } = require("express");
 const eventTypeRouter = Router();
-const { getEventType, create_EvenType, getEventTypeById, updateEventType } = require("../event_type/event_type.Controller");
+const { getEventTypes, createEventType, getEventTypeById, updateEventType } = require("../event_type/event_type.Controller");
+
+
+
 
 /**
  * @swagger
@@ -11,7 +14,7 @@ const { getEventType, create_EvenType, getEventTypeById, updateEventType } = req
 
 /**
  * @swagger
- * /event_type/create:
+ * /eventTypeRouter/createEventType:
  *   post:
  *     summary: Create a new event type
  *     tags: [EventType]
@@ -30,11 +33,11 @@ const { getEventType, create_EvenType, getEventTypeById, updateEventType } = req
  *       "500":
  *         description: Internal server error
  */
-eventTypeRouter.post("/create", create_EvenType);
+eventTypeRouter.post("/createEventType", createEventType);
 
 /**
  * @swagger
- * /event_type/getEventTypes:
+ * /eventTypeRouter/getEventTypes:
  *   get:
  *     summary: Get all event types
  *     tags: [EventType]
@@ -45,11 +48,11 @@ eventTypeRouter.post("/create", create_EvenType);
  *       "500":
  *         description: Internal server error
  */
-eventTypeRouter.get("/getEventTypes", getEventType);
+eventTypeRouter.get("/getEventTypes", getEventTypes);
 
 /**
  * @swagger
- * /event_type/getEventType/{id}:
+ * /eventTypeRouter/getEventType/{id}:
  *   get:
  *     summary: Get an event type by ID
  *     tags: [EventType]
@@ -73,7 +76,7 @@ eventTypeRouter.get("/getEventType/:id", getEventTypeById);
 
 /**
  * @swagger
- * /event_type/updateEventType/{id}:
+ * /eventTypeRouter/updateEventType/{id}:
  *   put:
  *     summary: Update an event type by ID
  *     tags: [EventType]

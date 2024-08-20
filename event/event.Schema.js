@@ -4,20 +4,20 @@ const { HumanCategory } = require("../human_category/human_category.Schema");
 const { VenueBek } = require("../venue/venue.Schema")
 
 const eventSchema = new Schema({
-  name: { type: String, required: true },
-  photo: { type: String, required: true },
-  start_date: { type: Date, required: true },
-  start_time: { type: String, required: true },
-  finish_date: { type: Date, required: true },
-  finish_time: { type: String, required: true },
-  info: { type: String, required: true },
+  name: { type: String, require: true },
+  photo: { type: String, require: true },
+  start_date: { type: Date, require: true },
+  start_time: { type: Date, require: true },
+  finish_date: { type: Date, require: true },
+  finish_time: { type: Date, require: true },
+  info: { type: String, require: true },
   event_type_id: { type: Schema.Types.ObjectId, ref: event_typeChik },
   human_category_id: { type: Schema.Types.ObjectId, ref: HumanCategory },
   venue_id: { type: Schema.Types.ObjectId, ref: VenueBek },
-  lang_id: { type: Number, required: true },
-  release_date: { type: Date, required: true }
+  // lang_id: { type: Number, require: true },
+  release_date: { type: Date, require: true }
 });
 
-const Event = model("Event", eventSchema);
+const Event = model("event", eventSchema);
 
 module.exports = { Event };

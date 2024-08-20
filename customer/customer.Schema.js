@@ -1,18 +1,18 @@
 const { Schema, model } = require("mongoose");
+const { Gender } = require("../gender/gender.Schema");
+const { language } = require("../lenguage/lenguage.Schema");
 
 const customerSchema = new Schema({
-  id: { type: Number, required: true },
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true },
-  phone: { type: String, required: true },
-  hashed_password: { type: String, required: true },
-  email: { type: String, required: true },
-  birth_date: { type: Date, required: true },
-  gender: { type: Number, required: true },
-  lang_id: { type: Number, required: true },
-  hashed_refresh_token: { type: String, required: false }
+  first_name: { type: String }, 
+  last_name: { type: String }, 
+  phone: { type: String }, 
+  hashed_password: { type: String }, 
+  birth_date: { type: Date }, 
+  email: { type: String, require: true } ,
+  gender: { type:Schema.Types.ObjectId, ref: Gender } ,
+  lang_id: { type: Schema.Types.ObjectId, ref: language } ,
 });
 
-const Customer = model("Customer", customerSchema);
+const Customer = model("customer", customerSchema);
 
 module.exports = { Customer };

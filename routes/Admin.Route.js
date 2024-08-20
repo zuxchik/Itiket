@@ -6,6 +6,16 @@ const {
   getAdminById,
   updateAdmin,
 } = require("../Admin/Admin.cintroller");
+const { AdminValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
 
 /**
  * @swagger
@@ -16,7 +26,7 @@ const {
 
 /**
  * @swagger
- * /admin/create:
+ * /adminRouter/createAdmin:
  *   post:
  *     summary: Create a new admin
  *     tags: [Admin]
@@ -27,23 +37,27 @@ const {
  *         application/json:
  *           schema:
  *             properties:
- *               name:
- *                 type: string
- *               email:
- *                 type: string
- *               password:
- *                 type: string
+ *                name:
+ *                  type: string
+ *                login:
+ *                  type: string
+ *                hashed_password:
+ *                  type: string
+ *                is_active:
+ *                  type: boolean
+ *                is_creator:
+ *                  type: boolean
  *     responses:
  *       "201":
  *         description: Admin created successfully
  *       "500":
  *         description: Internal server error
  */
-adminRouter.post("/create", createAdmin);
+adminRouter.post("/createAdmin", ValidateSchema(AdminValidation), createAdmin);
 
 /**
  * @swagger
- * /admin/getAdmin:
+ * /adminRouter/getAdmin:
  *   get:
  *     summary: Get all admins
  *     tags: [Admin]
@@ -58,7 +72,7 @@ adminRouter.get("/getAdmin", getAdmin);
 
 /**
  * @swagger
- * /admin/getAdmin/{id}:
+ * /adminRouter/getAdmin/{id}:
  *   get:
  *     summary: Get an admin by ID
  *     tags: [Admin]
@@ -82,7 +96,7 @@ adminRouter.get("/getAdmin/:id", getAdminById);
 
 /**
  * @swagger
- * /admin/updateAdmin/{id}:
+ * /adminRouter/updateAdmin/{id}:
  *   put:
  *     summary: Update an admin by ID
  *     tags: [Admin]
@@ -101,12 +115,16 @@ adminRouter.get("/getAdmin/:id", getAdminById);
  *           schema:
  *             type: object
  *             properties:
- *               name:
- *                 type: string
- *               email:
- *                 type: string
- *               password:
- *                 type: string
+ *                name:
+ *                  type: string
+ *                login:
+ *                  type: string
+ *                hashed_password:
+ *                  type: string
+ *                is_active:
+ *                  type: boolean
+ *                is_creator:
+ *                  type: boolean
  *     responses:
  *       "200":
  *         description: Admin updated successfully

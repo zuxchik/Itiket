@@ -1,4 +1,4 @@
-const { HumanChik } = require("./human_category.Schema");
+const { HumanCategory } = require("./human_category.Schema");
 
 const create_HumanCategory = async (req, res) => {
     try {
@@ -6,14 +6,14 @@ const create_HumanCategory = async (req, res) => {
             name,
             start_age,
             finish_age,
-            gender
+            gender_id
         } = req.body;
 
-        const new_HumanCategory = new HumanChik({
+        const new_HumanCategory = new HumanCategory({
             name,
             start_age,
             finish_age,
-            gender
+            gender_id
         });
 
         await new_HumanCategory.save();
@@ -25,23 +25,24 @@ const create_HumanCategory = async (req, res) => {
 
 const getHumanCategory = async (req, res) => {
     try {
-        const HumanCategorys = await HumanChik.find();
+        const HumanCategorys = await HumanCategory.find().populate("gender_id");
         res.send(HumanCategorys);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
+
 const getHumanCategoryById = async (req, res) => {
     try {
-        const { id } = req.params;
-        const HumanCategory = await HumanChik.findById(id);
-        if (!HumanCategory) {
+        const { HumanCategoryid } = req.params;
+        const humanCategory = await HumanCategory.findById(HumanCategoryid).populate("gender_id");
+        if (!humanCategory) {
             return res.status(404).send("HumanCategory not found");
         }
-        res.send(HumanCategory);
+        res.send(humanCategory);
     } catch (error) {
-        res.status(500).send(error.message);
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -50,7 +51,7 @@ const updateHumanCategory = async (req, res) => {
         const HumanCategoryId = req.params.id;
         const updatedData = req.body;
 
-        const updatedHumanCategory = await HumanChik.findByIdAndUpdate(HumanCategoryId, updatedData, {
+        const updatedHumanCategory = await HumanCategory.findByIdAndUpdate(HumanCategoryId, updatedData, {
             new: true,
         });
 
